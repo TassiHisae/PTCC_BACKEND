@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require('multer');
 const storage = require('./config/upload')
-const SpotController = require("./controller/SpotController");
+const imgController = require("./controller/imgController");
 const ValidaSession = require('./Validacao/ValidaSession');
 const routes = express.Router();
 const Valida = new ValidaSession();
@@ -9,7 +9,7 @@ const upload = multer({storage});
 
 
 
-routes.post('/spots', upload.single('Foto_cadeado'),SpotController.store);
+routes.post('/Img', upload.single('Foto_cadeado'),imgController.store);
 
  routes.post('/Login',async (req, res) => {
     const {Email} = req.body
