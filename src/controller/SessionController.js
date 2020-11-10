@@ -1,4 +1,4 @@
-const User = require('../model/UserModel');
+
 /* const banco = new User; */
 
 module.exports = {

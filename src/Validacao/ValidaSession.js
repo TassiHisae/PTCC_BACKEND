@@ -4,16 +4,17 @@ class Valida {
  
    async Valida_login(Email,Senha)
 {
+   if(Email == "" || Senha == ""){
+    return {"Erro":"Por favor informar Email e Senha #115790"} 
+   }
     
-    if(this.IsEmail(Email) & Senha != "")
+   else if(this.IsEmail(Email) & Senha != "")
     {          
-        
-        return await userController.User_Login(Email,Senha)
-       /*  return {"Err":"Email está correto"} */
-    }
+         return await userController.User_Login(Email,Senha)
+    } 
     else
     {
-       /*  return {"Err":"Email está incorreto"} */
+         return {"Erro":"Email ou senha estão incorreto #115789"} 
     }
 }
     IsEmail(email){
@@ -24,12 +25,5 @@ class Valida {
 }
 
 }
-
-/*   const valida = new Valida()
-console.log(valida.Valida_login("jonathan@hotmail.com",123)
-.then(function(results){
-    console.log(results.rows[0])
-}))  */
- 
 
 module.exports = Valida;
