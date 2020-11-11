@@ -8,9 +8,7 @@ class List{
    {
    const result = banco_List.List_Lojas()
                         .then(function(results){
-                                  return results.rows.map((element =>{
-                                  return element.nome;
-                                  }))
+                                  return results
                         })
                         .catch((e) => {
                              return  {"teste":"Ocorreu um erro inesperado Codigo #115987"}
@@ -23,6 +21,5 @@ class List{
 
 module.exports = List
 
-/* 
 const teste = new List()
-teste.User_Login().then(results=>(console.log(results))) */
+teste.User_Login().then(results=>(console.log(results))) 
