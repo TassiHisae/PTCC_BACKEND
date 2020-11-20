@@ -13,15 +13,16 @@ class Banco_List extends Conexao {
         if (!client) {
             return erros.Client;
         }
-
-        const valor = await client
-            .query(text)
-            .then(token => { return token })
-            .catch(e => console.error("Não foi possivel" + e.stack))
-            .finally(() => con.End(client))
-
-        return new Promise(function (resolve, reject) {
-            setTimeout(function () {
+        
+          const valor = await client
+          .query(text)
+          .then(token => {return token})    
+          .catch(e => console.error("Não foi possivel" + e.stack))
+          .finally(() => con.End(client))           
+         
+        return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.log(valor.rows)
                 resolve(valor)
                 reject("Erro na promisse login");
             }, 1000)
