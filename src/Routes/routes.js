@@ -156,9 +156,23 @@ module.exports = {
     )
   },
 
+  async List_Product_Details(req, res) {
+    const { idproduto } = req.body
+    productController.List_Product_Details(idproduto).then(
+      results => res.send(results)
+    )
+  },
+
+  async List_Product_Category(req, res) {
+    const { idempresa } = req.body
+    const { categoria } = req.body
+    productController.List_Product_Category(idempresa, categoria).then(
+      results => res.send(results)
+    )
+  },
+
   async product_create(req, res) {
     const { nome } = req.body
-    const { validade } = req.body
     const { preco } = req.body
     const { empresa } = req.body
     const { marca } = req.body
@@ -166,7 +180,7 @@ module.exports = {
     const { descricao } = req.body
     const { um } = req.body
     const { foto } = req.body
-    productController.Product_Create(nome, validade, preco, empresa, marca, peso, descricao, um, foto).then(
+    productController.Product_Create(nome, preco, empresa, marca, peso, descricao, um, foto).then(
       results => res.send(results)
     )
   },
@@ -180,7 +194,6 @@ module.exports = {
   async product_update(req, res) {
     const { idprod } = req.body
     const { nome } = req.body
-    const { validade } = req.body
     const { preco } = req.body
     const { empresa } = req.body
     const { marca } = req.body
@@ -188,7 +201,7 @@ module.exports = {
     const { descricao } = req.body
     const { um } = req.body
     const { status } = req.body
-    productController.Product_Update(idprod, nome, validade, preco, empresa, marca, peso, descricao, um, status).then(
+    productController.Product_Update(idprod, nome, preco, empresa, marca, peso, descricao, um, status).then(
       results => res.send(results)
     )
   },

@@ -70,6 +70,10 @@ routes.post('/List_Pedidos', (req, res) => { rotas.List_Pedidos(req, res); });
 
 routes.post('/List_Product', (req, res) => { rotas.List_Product(req, res); });
 
+routes.post('/List_Product_Details', (req, res) => { rotas.List_Product_Details(req, res); });
+
+routes.post('/List_Product_Category', (req, res) => { rotas.List_Product_Category(req, res); });
+
 routes.post('/Company_Register', (req, res) => { rotas.company_register(req, res); });
 
 routes.post('/Order_Status_Create', (req, res) => { rotas.order_status_create(req, res); });

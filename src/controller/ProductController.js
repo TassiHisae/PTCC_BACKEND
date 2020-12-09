@@ -14,8 +14,8 @@ class Product {
         return result
     }
 
-    Product_Create(nome, validade, preco, empresa, marca, peso, descricao, um, foto) {
-        const result = banco_product.create(nome, validade, preco, empresa, marca, peso, descricao, um, foto)
+    Product_Create(nome, preco, empresa, marca, peso, descricao, um, foto) {
+        const result = banco_product.create(nome, preco, empresa, marca, peso, descricao, um, foto)
             .then(function (results) {
                 return results.rows
             })
@@ -36,8 +36,30 @@ class Product {
         return result
     }
 
-    Product_Update(idprod, nome, validade, preco, empresa, marca, peso, descricao, um, status) {
-        const result = banco_product.update(idprod, nome, validade, preco, empresa, marca, peso, descricao, um, status)
+    List_Product_Details(idproduto) {
+        const result = banco_product.list_product_details(idproduto)
+            .then(function (results) {
+                return results.rows
+            })
+            .catch((e) => {
+                return { "teste": "Ocorreu um erro inesperado Codigo #115987" }
+            })
+        return result
+    }
+
+    List_Product_Category(idempresa, categoria) {
+        const result = banco_product.list_product_category(idempresa, categoria)
+            .then(function (results) {
+                return results.rows
+            })
+            .catch((e) => {
+                return { "teste": "Ocorreu um erro inesperado Codigo #115987" }
+            })
+        return result
+    }
+
+    Product_Update(idprod, nome, preco, empresa, marca, peso, descricao, um, status) {
+        const result = banco_product.update(idprod, nome, preco, empresa, marca, peso, descricao, um, status)
             .then(function (results) {
                 return results.rows
             })

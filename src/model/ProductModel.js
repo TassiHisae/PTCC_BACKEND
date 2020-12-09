@@ -30,7 +30,7 @@ class Banco_Product extends Conexao {
     }
 
     async list_product(idempresa) {
-        const text = "select *,to_char(produto.validade, 'dd/mm/yyyy'::text) AS validadedata from produto where empresa_id_produto = $1"
+        const text = "select * from produto where empresa_id_produto = $1"
         const values = [idempresa]
         const client = await con.Open(text, values).catch(e => console.error("erro na query"))
 
@@ -53,9 +53,57 @@ class Banco_Product extends Conexao {
         });
     }
 
-    async create(nome, validade, preco, empresa, marca, peso, descricao, um, foto) {
-        const text = "insert into produto (nome,validade,valor,status,empresa_id_produto,marca,peso,descricao,unidade_medida,foto_principal) values('" +
-            nome + "','" + validade + "','" + preco + "','disponível','" + empresa + "','"
+    async list_product_details(idproduto) {
+        const text = "select * from produto where idproduto = $1"
+        const values = [idproduto]
+        const client = await con.Open(text, values).catch(e => console.error("erro na query"))
+
+        if (!client) {
+            return erros.Client;
+        }
+
+        const valor = await client
+            .query(text, values)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor)
+                resolve(valor)
+                reject("Erro na promisse list_prod");
+            }, 1000)
+        });
+    }
+
+    async list_product_category(idempresa, categoria) {
+        const text = " select * from cat_prod_empresa where idempresa = $1 and nome_categoria = $2;"
+        const values = [idempresa, categoria]
+        const client = await con.Open(text, values).catch(e => console.error("erro na query"))
+
+        if (!client) {
+            return erros.Client;
+        }
+
+        const valor = await client
+            .query(text, values)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor)
+                resolve(valor)
+                reject("Erro na promisse list_prod_cat");
+            }, 1000)
+        });
+    }
+
+    async create(nome, preco, empresa, marca, peso, descricao, um, foto) {
+        const text = "insert into produto (nome,valor,status,empresa_id_produto,marca,peso,descricao,unidade_medida,foto_principal) values('" +
+            nome + "','" + preco + "','disponível','" + empresa + "','"
             + marca + "','" + peso + "','" + descricao + "','" + um + "','" + foto + "')"
         const client = await con.Open(text).catch(e => console.error("erro na query"))
         if (!client) {
@@ -96,7 +144,7 @@ class Banco_Product extends Conexao {
             setTimeout(function () {
                 console.log(valor)
                 resolve(valor)
-                reject("Erro na promisse create_prod");
+                reject("Erro na promisse create_cat");
             }, 1000)
         });
 
@@ -120,15 +168,15 @@ class Banco_Product extends Conexao {
             setTimeout(function () {
                 console.log(valor)
                 resolve(valor)
-                reject("Erro na promisse create_prod");
+                reject("Erro na promisse update_cat");
             }, 1000)
         });
 
     }
 
-    async update(idprod, nome, validade, preco, empresa, marca, peso, descricao, um, status) {
-        const text = "update produto set nome = $2, validade = $3, valor = $4, marca = $6, peso = $7, descricao = $8, unidade_medida = $9, status = $10 where empresa_id_produto = $5 and idproduto= $1"
-        const values = [idprod, nome, validade, preco, empresa, marca, peso, descricao, um, status]
+    async update(idprod, nome, preco, empresa, marca, peso, descricao, um, status) {
+        const text = "update produto set nome = $2, valor = $3, marca = $5, peso = $6, descricao = $7, unidade_medida = $8, status = $9 where empresa_id_produto = $4 and idproduto= $1"
+        const values = [idprod, nome, preco, empresa, marca, peso, descricao, um, status]
         const client = await con.Open(text, values).catch(e => console.error("erro na query"))
 
         if (!client) {
@@ -214,7 +262,7 @@ class Banco_Product extends Conexao {
             setTimeout(function () {
                 console.log(valor)
                 resolve(valor)
-                reject("Erro na promisse categoria");
+                reject("Erro na promisse categoria_atual");
             }, 1000)
         });
     }
@@ -236,7 +284,7 @@ class Banco_Product extends Conexao {
             setTimeout(function () {
                 console.log(valor)
                 resolve(valor)
-                reject("Erro na promisse categoria");
+                reject("Erro na promisse especie");
             }, 1000)
         });
     }
@@ -259,7 +307,7 @@ class Banco_Product extends Conexao {
             setTimeout(function () {
                 console.log(valor)
                 resolve(valor)
-                reject("Erro na promisse categoria");
+                reject("Erro na promisse raca");
             }, 1000)
         });
     }
