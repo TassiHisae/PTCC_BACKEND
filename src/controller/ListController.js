@@ -1,5 +1,3 @@
-
-
 const Banco_List = require("../model/ListModel");
 const banco_List = new Banco_List();
 
@@ -23,6 +21,18 @@ class List {
    }
    List_pedido(id) {
       const result = banco_List.List_Pedidos(id)
+         .then(function (results) {
+            return results.rows;
+         })
+         .catch((e) => {
+            return { "teste": "Ocorreu um erro inesperado Codigo #115987" }
+         })
+
+      return result
+
+   }
+   List_pedido_Inativo(id) {
+      const result = banco_List.List_Pedidos_Inativos(id)
          .then(function (results) {
             return results.rows;
          })

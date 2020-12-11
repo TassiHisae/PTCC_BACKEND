@@ -101,6 +101,29 @@ class Banco_Product extends Conexao {
         });
     }
 
+    async list_product_category_all() {
+        const text = " select * from cat_prod_empresa"
+        const client = await con.Open(text).catch(e => console.error("erro na query"))
+
+        if (!client) {
+            return erros.Client;
+        }
+
+        const valor = await client
+            .query(text)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor)
+                resolve(valor)
+                reject("Erro na promisse list_prod_cat");
+            }, 1000)
+        });
+    }
+
     async create(nome, preco, empresa, marca, peso, descricao, um, foto) {
         const text = "insert into produto (nome,valor,status,empresa_id_produto,marca,peso,descricao,unidade_medida,foto_principal) values('" +
             nome + "','" + preco + "','disponível','" + empresa + "','"

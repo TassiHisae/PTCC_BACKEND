@@ -58,6 +58,17 @@ class Product {
         return result
     }
 
+    List_Product_Category_All() {
+        const result = banco_product.list_product_category_all()
+            .then(function (results) {
+                return results.rows
+            })
+            .catch((e) => {
+                return { "teste": "Ocorreu um erro inesperado Codigo #115987" }
+            })
+        return result
+    }
+
     Product_Update(idprod, nome, preco, empresa, marca, peso, descricao, um, status) {
         const result = banco_product.update(idprod, nome, preco, empresa, marca, peso, descricao, um, status)
             .then(function (results) {

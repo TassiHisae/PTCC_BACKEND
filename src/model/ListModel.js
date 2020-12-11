@@ -13,16 +13,16 @@ class Banco_List extends Conexao {
         if (!client) {
             return erros.Client;
         }
-        
-          const valor = await client
-          .query(text)
-          .then(token => {return token})    
-          .catch(e => console.error("Não foi possivel" + e.stack))
-          .finally(() => con.End(client))           
-         
-        return new Promise(function(resolve,reject){
-                setTimeout(function(){
-                    console.log(valor.rows)
+
+        const valor = await client
+            .query(text)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor.rows)
                 resolve(valor)
                 reject("Erro na promisse login");
             }, 1000)
@@ -46,6 +46,31 @@ class Banco_List extends Conexao {
 
         return new Promise(function (resolve, reject) {
             setTimeout(function () {
+                console.log(valor);
+                resolve(valor)
+                reject("Erro na promisse pedido");
+            }, 1000)
+        });
+    }
+
+    async List_Pedidos_Inativos(id) {
+
+        const text = "select * from pedido_resumo where " + id + " and status = 'inativo'"
+        const client = await con.Open(text)
+
+        if (!client) {
+            return erros.Client;
+        }
+
+        const valor = await client
+            .query(text)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor);
                 resolve(valor)
                 reject("Erro na promisse pedido");
             }, 1000)

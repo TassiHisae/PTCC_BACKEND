@@ -68,11 +68,15 @@ routes.post('/List_Lojas', (req, res) => { return rotas.List_Lojas(req, res); })
 
 routes.post('/List_Pedidos', (req, res) => { rotas.List_Pedidos(req, res); });
 
+routes.post('/List_Pedidos_Inativos', (req, res) => { rotas.List_Pedidos_Inativo(req, res); });
+
 routes.post('/List_Product', (req, res) => { rotas.List_Product(req, res); });
 
 routes.post('/List_Product_Details', (req, res) => { rotas.List_Product_Details(req, res); });
 
 routes.post('/List_Product_Category', (req, res) => { rotas.List_Product_Category(req, res); });
+
+routes.post('/List_Product_Category_All', (req, res) => { rotas.List_Product_Category_All(req, res); });
 
 routes.post('/Company_Register', (req, res) => { rotas.company_register(req, res); });
 
@@ -101,6 +105,8 @@ routes.post('/Company_Address_Update', (req, res) => { rotas.company_address_upd
 routes.post('/Company_Photo_Update', (req, res) => { rotas.company_photo_update(req, res); });
 
 routes.post('/Company', (req, res) => { rotas.company(req, res); });
+
+routes.post('/Company_all', (req, res) => { rotas.company_all(req, res); });
 
 routes.post('/Search_Filter', (req, res) => { rotas.Search_Filter(req, res); });
 

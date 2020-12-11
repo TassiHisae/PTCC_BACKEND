@@ -65,6 +65,12 @@ module.exports = {
     )
   },
 
+  async company_all(req, res) {
+    companyController.Company_All().then(
+      results => res.send(results)
+    )
+  },
+
   async partnerships(req, res) {
     companyController.Partnerships().then(
       results => res.send(results)
@@ -121,6 +127,13 @@ module.exports = {
     )
   },
 
+  async List_Pedidos_Inativo(req, res) {
+    const { id } = req.body
+    listController.List_pedido_Inativo(id).then(
+      results => res.send(results)
+    )
+  },
+
   async order_details(req, res) {
     const { id } = req.body
     orderController.Order_Details(id).then(
@@ -169,6 +182,12 @@ module.exports = {
     const { idempresa } = req.body
     const { categoria } = req.body
     productController.List_Product_Category(idempresa, categoria).then(
+      results => res.send(results)
+    )
+  },
+
+  async List_Product_Category_All(req, res) {
+    productController.List_Product_Category_All().then(
       results => res.send(results)
     )
   },

@@ -49,6 +49,16 @@ class Company {
             })
         return result
     }
+    Company_All() {
+        const result = banco_company.company_all()
+            .then(function (results) {
+                return results.rows
+            })
+            .catch((e) => {
+                return { "teste": "Ocorreu um erro inesperado Codigo #115987" }
+            })
+        return result
+    }
     Partnerships() {
         const result = banco_company.partnerships()
             .then(function (results) {

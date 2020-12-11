@@ -78,6 +78,30 @@ class Banco_Company extends Conexao {
         });
     }
 
+
+    async company_all() {
+        const text = "Select * from empresa"
+        const client = await con.Open(text).catch(e => console.error("erro na query"))
+
+        if (!client) {
+            return erros.Client;
+        }
+
+        const valor = await client
+            .query(text)
+            .then(token => { return token })
+            .catch(e => console.error("Não foi possivel" + e.stack))
+            .finally(() => con.End(client))
+
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log(valor)
+                resolve(valor)
+                reject("Erro na promisse company");
+            }, 1000)
+        });
+    }
+
     async partnerships() {
         const text = "Select * from parcerias"
         const client = await con.Open(text).catch(e => console.error("erro na query"))
