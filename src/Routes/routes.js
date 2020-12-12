@@ -1,5 +1,7 @@
 const ValidaSession = require("../Validacao/ValidaSession");
 const Valida = new ValidaSession();
+const UserController = require("../controller/UserController")
+const userController = new UserController();
 const ListController = require("../controller/ListController");
 const listController = new ListController();
 const CompanyController = require("../controller/CompanyController");
@@ -17,6 +19,7 @@ const express = require("express");
 const routes = express.Router();
 
 module.exports = {
+
   async login(req, res) {
     const { Email } = req.body;
     const { Pass } = req.body;
@@ -25,6 +28,7 @@ module.exports = {
       res.send(results);
     });
   },
+
   async company_login(req, res) {
     const { Email } = req.body;
     const { Pass } = req.body;
@@ -363,4 +367,35 @@ module.exports = {
 
     compra.status_entregue(id_pedido).then((results) => res.send(results));
   },
+
+  async Create_User(req, res) {
+
+    const { cpf } = req.body;
+    const { senha } = req.body;
+    const { email } = req.body;
+    const { nascimento } = req.body;
+    const { nome } = req.body;
+    const { telefone } = req.body;
+    const { celular } = req.body;
+
+    userController
+      .Create_User(cpf, senha, email, nascimento, nome, telefone, celular)
+      .then((results) => res.send(results))
+  },
+
+  async altera_usuario(req, res) {
+
+    const { id } = req.body;
+    const { cpf } = req.body;
+    const { senha } = req.body;
+    const { email } = req.body;
+
+    const { nome } = req.body;
+
+
+    userController
+      .altera_usuario(id,nome,cpf, email,senha)
+      .then((results) => res.send(results))
+  }
+
 };

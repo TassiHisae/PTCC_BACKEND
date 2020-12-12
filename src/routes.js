@@ -32,6 +32,10 @@ function companySave() {
     return upload.single('img');
 }
 
+
+
+routes.post('/Create_User',(req,res)=>{return rotas.Create_User(req,res)})
+
 routes.post('/ProdImg:nome', prodSave(), imgController.ProdSave);
 
 routes.post('/ProdTemp:nome', prodTemp(), imgController.ProdTemp);
@@ -119,5 +123,9 @@ routes.post('/Cadastra_pedido',(req,res) => {rotas.Cadastra_pedido(req,res); });
 routes.post('/status_pedido',(req,res) => {rotas.status_pedido(req,res); });
 
 routes.post('/status_entregue',(req,res) => {rotas.status_entregue(req,res); });
+
+routes.post('/altera_usuario',(req,res) => {rotas.altera_usuario(req,res); });
+
+
 
 module.exports = routes;
