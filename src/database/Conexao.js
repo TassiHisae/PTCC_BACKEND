@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'tcc',
-  password: '21089mIt',
+  password: '123',
   port: 5432,
   max: 20,
   idleTimeoutMillis: 30000,
@@ -15,7 +15,7 @@ const client = new Client({
   user: 'postgres',
   host: 'localhost',
   database: 'tcc',
-  password: '21089mIt',
+  password: '123',
   port: 5432,
 }
 );

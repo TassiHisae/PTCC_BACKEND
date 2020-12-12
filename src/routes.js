@@ -112,4 +112,12 @@ routes.post('/Search_Filter', (req, res) => { rotas.Search_Filter(req, res); });
 
 routes.post('/Search_Filter_Company', (req, res) => { rotas.Search_Filter_Company(req, res); });
 
+routes.post('/Compra',(req,res) => {rotas.Compra(req,res); });
+
+routes.post('/Cadastra_pedido',(req,res) => {rotas.Cadastra_pedido(req,res); });
+
+routes.post('/status_pedido',(req,res) => {rotas.status_pedido(req,res); });
+
+routes.post('/status_entregue',(req,res) => {rotas.status_entregue(req,res); });
+
 module.exports = routes;
